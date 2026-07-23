@@ -17,13 +17,13 @@
 \usepackage{booktabs}
 \usepackage[pdftex]{graphicx}
 \usepackage{caption}
-\usepackage{hyperref}
 \usepackage{colortbl}
 \usepackage{textcomp}
-\usepackage[pdftex]{color}
 \usepackage{array}
 \usepackage{titlesec}
 \usepackage{mdframed}
+\usepackage{float}
+\usepackage{hyperref}
 
 % ============================================================
 % CORES
@@ -60,8 +60,8 @@
 % CONFIGURACOES DE PAGINA - Formato SBC
 % ============================================================
 \geometry{top=3cm, bottom=2.5cm, left=3cm, right=2cm}
-\setlength{\headheight}{14pt}
-\addtolength{\topmargin}{-2pt}
+\setlength{\headheight}{24.02pt}
+\addtolength{\topmargin}{-10.02pt}
 
 % ============================================================
 % CABECALHO ELEGANTE
@@ -190,7 +190,7 @@ Um TAD é definido exclusivamente por sua interface de operações, sem expor de
 
 O TAD Grafo foi implementado em C++ com quatro classes com encapsulamento completo. A Tabela 1 descreve cada classe.
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \caption{Classes do TAD Grafo}
 \begin{tabular}{>{\bfseries\itshape}lp{9cm}}
@@ -232,13 +232,13 @@ A representação interna utiliza lista de adjacência não direcionada. O méto
 % ============================================================
 \section*{4. ANÁLISE DE COMPLEXIDADE}
 
-A Tabela 2 apresenta a análise de complexidade assintótica dos métodos do TAD, onde $n = |V|$ é o número de vértices e $a = |E|$ é o número de arestas.
+A Tabela 2 apresenta a complexidade assintótica de cada método do TAD \textit{Grafo}, com a respectiva justificativa.
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \caption{Complexidade assintótica dos métodos do TAD Grafo}
-\small
-\begin{tabular}{lll}
+{\footnotesize
+\begin{tabular}{p{4.5cm}p{2.5cm}p{5.5cm}}
 \toprule
 \textbf{Método} & \textbf{Complexidade} & \textbf{Justificativa} \\
 \midrule
@@ -255,14 +255,9 @@ custoOperacaoAnual() & $O(n^2)$ & dijkstra() $O(n^2)$ + 12 $\times$ $O(n)$ \\
 melhorBairro() / imprimirCustos() & $O(n^3)$ & $n \times$ custoOperacaoAnual() $O(n^2)$ \\
 imprimirGrafo() & $O(n+a)$ & Percorre vértices e arestas \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \label{tab:complexidade}
 \end{table}
-\vspace{-0.3cm}
-\begin{center}\small\textit{Fonte: Os autores (2026).}\end{center}
-
-O método \textit{melhorBairro()} apresenta a maior complexidade $O(n^3)$, executando \textit{custoOperacaoAnual()} -- de custo $O(n^2)$ -- para cada um dos $n$ vértices. Este comportamento é aceitável para instâncias com número reduzido de bairros candidatos \cite{ballou2006}.
-
 % ============================================================
 % 5. COMPARACAO DOS TRES ALGORITMOS
 % ============================================================
@@ -270,7 +265,7 @@ O método \textit{melhorBairro()} apresenta a maior complexidade $O(n^3)$, execu
 
 Os três algoritmos produzem resultados idênticos para grafos com pesos estritamente positivos. Os tempos de execução foram medidos em \textbf{30 repetições} por vértice de origem, calculando-se média e desvio padrão. A Tabela 3 sintetiza a comparação e a Tabela 4 apresenta os resultados estatísticos obtidos com 15 vértices.
 
-\begin{table}[h!]
+\begin{table}[ht]
 \centering
 \caption{Comparação entre Dijkstra, Bellman-Ford e Floyd-Warshall}
 \small
@@ -292,7 +287,7 @@ Indicado p/ problema & Sim \checkmark & Alternativo      & Alternativo \\
 \vspace{-0.3cm}
 \begin{center}\small\textit{Fonte: Os autores (2026).}\end{center}
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \caption{Análise estatística dos tempos de execução (30 repetições, 15 vértices) -- segundos}
 \small
@@ -350,9 +345,9 @@ A medição de tempo foi realizada com a função \textit{clock()} da biblioteca
 
 \subsection*{6.2 Dados de Teste}
 
-Os dados foram elaborados com base na estrutura logística real de Extrema-MG, contemplando \textbf{15 bairros candidatos} e \textbf{22 arestas} em um grafo não direcionado conexo. As distâncias foram obtidas via \textit{Google Maps} (2026). Os custos de instalação foram estimados com base em dados de mercado \cite{cushman2022}. Ressalta-se que as distâncias são estimativas adequadas para fins acadêmicos; em um projeto real recomenda-se análise mais apurada das condições viárias.
+Os dados foram elaborados com base na estrutura logística real de Extrema-MG, contemplando \textbf{15 bairros candidatos} e \textbf{22 arestas} em um grafo não direcionado conexo. As distâncias foram obtidas via \textit{Google Maps} (2026). Os custos de instalação foram estimados com base em dados de mercado \cite{cushman2022}. Ressalta-se que as distâncias são estimativas adequadas para fins acadêmicos; em um projeto real recomenda-se análise mais apurada das condições viárias. A Tabela 5 detalha os bairros e suas adjacências.
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \caption{Dados dos 15 bairros candidatos de Extrema-MG}
 \small
@@ -371,7 +366,7 @@ Os dados foram elaborados com base na estrutura logística real de Extrema-MG, c
 10 & Ponte Nova             & 2.100.000,00  & 1, 8 \\
 11 & Morbidelli             & 2.800.000,00  & 4, 12 \\
 12 & Vila Rica              & 2.300.000,00  & 1, 11 \\
-13 & Salto de Baixo \textbf{\textbf{\textasteriskcentered}} & 1.800.000,00 & 5, 15 \\
+13 & Salto de Baixo \textbf{\textasteriskcentered} & 1.800.000,00 & 5, 15 \\
 14 & Parque Logístico       & 5.500.000,00  & 3, 6, 9 \\
 15 & Morada da Serra        & 2.600.000,00  & 7, 13 \\
 \bottomrule
@@ -386,32 +381,32 @@ Os dados foram elaborados com base na estrutura logística real de Extrema-MG, c
 % ============================================================
 \section*{7. RESULTADOS E DISCUSSÃO}
 
-A Tabela 5 apresenta os resultados. O \textit{custoGalp\~ao} é calculado por:
+A Tabela 6 apresenta os resultados. O \textit{custoGalp\~ao} é calculado por:
 $$\text{custoGalp\~ao} = \text{custoInstalação} - \text{custoOperaçãoAnual}$$
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \caption{Resultados da análise de custos logísticos -- Extrema-MG (15 bairros)}
 \small
 \begin{tabular}{lllll}
 \rowcolor{azulescuro}
 \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Custo Inst. (R\$)}} & \textcolor{white}{\textbf{Custo Op. Anual (R\$)}} & \textcolor{white}{\textbf{CustoGalpão (R\$)}} & \textcolor{white}{\textbf{Rank}} \\
-1  & 2.500.000,00  & 424.158,50   & 2.075.841,50   & 5$^\circ$  \\
+1  & 2.500.000,00  & 424.158,50   & 2.075.841,50   & 6$^\circ$  \\
 2  & 8.500.000,00  & 300.671,00   & 8.199.329,00   & 14$^\circ$ \\
-3  & 4.500.000,00  & 396.095,40   & 4.103.904,60   & 10$^\circ$ \\
-4  & 3.200.000,00  & 319.778,00   & 2.880.222,00   & 7$^\circ$  \\
-5  & 2.800.000,00  & 299.278,50   & 2.500.721,50   & 6$^\circ$  \\
+3  & 4.500.000,00  & 396.095,40   & 4.103.904,60   & 12$^\circ$ \\
+4  & 3.200.000,00  & 319.778,00   & 2.880.222,00   & 9$^\circ$  \\
+5  & 2.800.000,00  & 299.278,50   & 2.500.721,50   & 8$^\circ$  \\
 6  & 12.000.000,00 & 275.485,50   & 11.724.514,50  & 15$^\circ$ \\
-7  & 3.800.000,00  & 350.653,50   & 3.449.346,50   & 9$^\circ$  \\
+7  & 3.800.000,00  & 350.653,50   & 3.449.346,50   & 11$^\circ$ \\
 8  & 2.200.000,00  & 542.988,80   & 1.657.011,20   & 3$^\circ$  \\
-9  & 3.600.000,00  & 340.675,50   & 3.259.324,50   & 8$^\circ$  \\
+9  & 3.600.000,00  & 340.675,50   & 3.259.324,50   & 10$^\circ$ \\
 10 & 2.100.000,00  & 530.428,70   & 1.569.571,30   & 2$^\circ$  \\
-11 & 2.800.000,00  & 361.759,50   & 2.438.240,50   & 4$^\circ$  \\
-12 & 2.300.000,00  & 393.097,00   & 1.906.903,00   & -- \\
+11 & 2.800.000,00  & 361.759,50   & 2.438.240,50   & 7$^\circ$  \\
+12 & 2.300.000,00  & 393.097,00   & 1.906.903,00   & 4$^\circ$  \\
 \rowcolor{verdesuave}
 \textbf{13 \textbf{\textasteriskcentered}} & \textbf{1.800.000,00} & \textbf{584.365,50} & \textbf{1.215.634,50} & \textbf{1$^\circ$} \\
 14 & 5.500.000,00  & 306.698,00   & 5.193.302,00   & 13$^\circ$ \\
-15 & 2.600.000,00  & 550.421,50   & 2.049.578,50   & -- \\
+15 & 2.600.000,00  & 550.421,50   & 2.049.578,50   & 5$^\circ$  \\
 \bottomrule
 \end{tabular}
 \label{tab:resultados}
@@ -419,14 +414,14 @@ $$\text{custoGalp\~ao} = \text{custoInstalação} - \text{custoOperaçãoAnual}$
 \vspace{-0.3cm}
 \begin{center}\small\textit{Fonte: Os autores (2026). \textbf{\textasteriskcentered} Bairro selecionado. Distâncias via Google Maps.}\end{center}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth, draft=false]{figura1_tempos.png}
 \caption{Comparação de tempos de execução: Dijkstra $\times$ Bellman-Ford $\times$ Floyd-Warshall}
 \label{fig:tempos}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.95\textwidth]{figura2_custos.png}
 \caption{Análise de custos por bairro candidato -- Extrema-MG (R\$)}
@@ -441,9 +436,9 @@ Quanto ao desempenho dos algoritmos, o \textit{Dijkstra} foi o mais rápido (0.0
 
 \subsection*{7.1 Análise de Sensibilidade}
 
-Para avaliar a robustez do modelo, realizou-se uma análise de sensibilidade variando os custos de instalação e operação em diferentes percentuais. A Tabela 6 e a Figura 3 apresentam os resultados.
+Para avaliar a robustez do modelo, realizou-se uma análise de sensibilidade variando os custos de instalação e operação em diferentes percentuais. A Tabela 7 e a Figura 3 apresentam os resultados.
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \caption{Análise de sensibilidade — variação dos custos e bairro vencedor}
 \small
@@ -462,7 +457,7 @@ Alta Operação    & 0\%   & +50\% & 13 -- Salto de Baixo & 923.451,75   \\
 \vspace{-0.3cm}
 \begin{center}\small\textit{Fonte: Os autores (2026).}\end{center}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{figura3_sensibilidade.png}
 \caption{Análise de sensibilidade: Bairro 13 mantém liderança em todos os cenários}
@@ -483,6 +478,7 @@ Esta análise demonstra que o sistema proposto constitui uma ferramenta eficaz d
 % ============================================================
 % 8. CONCLUSAO
 % ============================================================
+\clearpage
 \section*{8. CONCLUSÃO}
 
 Este trabalho apresentou um sistema computacional para apoio à decisão logística baseado em grafos não direcionados, implementado com Orientação a Objetos em C++. O TAD \textit{Grafo} com lista de adjacência mostrou-se adequado para a modelagem de 15 bairros reais de Extrema-MG.
@@ -498,7 +494,7 @@ Como limitações, as distâncias são estimativas via \textit{Google Maps} e as
 % ============================================================
 \section*{REFERÊNCIAS}
 
-\begin{thebibliography}{14}
+\begin{thebibliography}{17}
 
 \bibitem{ballou2006}
 BALLOU, R. H. \textit{Gerenciamento da Cadeia de Suprimentos/Logística Empresarial}. 5. ed. Porto Alegre: Bookman, 2006.
@@ -553,11 +549,9 @@ GALPÃO ALUGUEL E VENDA. Galpões logísticos em Extrema são disputados por emp
 
 \end{thebibliography}
 
-\vspace{1cm}
-\begin{center}
-\rule{\linewidth}{0.4pt} \\
-\vspace{0.2cm}
-{\small Claudineia Moreira de Oliveira -- PPGCM/UFF -- Junho de 2026}
-\end{center}
-
 \end{document}
+
+
+
+
+
